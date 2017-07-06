@@ -4,10 +4,27 @@ import './App.css';
 import SignUpSignIn from './SignUpSignIn';
 import TopNavbar from './TopNavbar';
 import Secret from './Secret';
+import Rnd from "react-rnd";
+import ListOfItemsContainer from "./containers/ListOfItemsContainer";
+import PlusIconContainer from "./containers/PlusIconContainer";
 
+class App extends Component {
+  constructor() {
+    super();
+  }
 
-function App() {
-  return <div> Hello ACA </div>;
+  componentDidMount() {
+        this.props.loadItems();
+    }
+
+  render() {
+    return (
+      <div>
+        <PlusIconContainer />
+        <ListOfItemsContainer />
+      </div>
+    );
+  }
 }
 
 export default App;
