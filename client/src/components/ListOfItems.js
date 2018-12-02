@@ -61,6 +61,7 @@ class ListOfItems extends Component {
                           resize={this.resize}
                           updateItem={this.props.updateItem}
                           deleteItem={this.props.deleteItem}
+                          key={item._id}
                       />;
               break;
         }

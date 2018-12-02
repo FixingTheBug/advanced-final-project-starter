@@ -19,8 +19,8 @@ class Text extends Component {
             style={{
                 top: this.props.item.y,
                 left: this.props.item.x,
-                width: this.props.item.width,
-                height: this.props.item.height,
+                width: this.props.item.width + "px",
+                height: this.props.item.height + "px",
                 resize: "both"
             }}
             className = "box"
