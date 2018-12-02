@@ -7,7 +7,6 @@ function items(state = "", action) {
   return state;
 }
 
-
 const rootReducer = combineReducers({
   items
 });

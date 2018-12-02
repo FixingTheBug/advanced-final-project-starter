@@ -4,13 +4,14 @@ import './App.css';
 import SignUpSignIn from './SignUpSignIn';
 import TopNavbar from './TopNavbar';
 import Secret from './Secret';
-import Rnd from "react-rnd";
+import {Rnd} from "react-rnd";
 import ListOfItemsContainer from "./containers/ListOfItemsContainer";
 import PlusIconContainer from "./containers/PlusIconContainer";
 
 class App extends Component {
   constructor() {
     super();
+    console.log(React.version);
   }
 
   componentDidMount() {

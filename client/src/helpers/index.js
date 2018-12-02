@@ -1,6 +1,6 @@
 export function findHighestZIndex(elem)
 {
-  var elems = document.getElementsByClassName(elem);
+  var elems = document.getElementsByClassName("elem");
   var highest = 0;
   for (var i = 0; i < elems.length; i++)
   {

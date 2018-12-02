@@ -4,7 +4,7 @@ import {updateItem, deleteItem} from "../actions";
 
 function mapStateToProps(state) {
     return {
-        items: state.items
+        items: state.items,
     }
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-import Rnd from "react-rnd";
+import {Rnd} from "react-rnd";
 import {findHighestZIndex, getYouTubeID} from "../helpers";
 import FontAwesome from "react-fontawesome";
 
@@ -10,26 +10,33 @@ class Video extends Component {
     }
 
     handleDragStop(event, item) {
-        let div = document.getElementById(item._id).getBoundingClientRect();
-        item.x = div.left;
-        item.y = div.top;
+      var div = document.getElementById(item._id).getBoundingClientRect();
+      item.x = div.left;
+      item.y = div.top;
 
-        this.props.updateItem(item);
+      this.props.updateItem(item);
     }
 
     handleResizeStop(event, item) {
-        item.width = event.srcElement.offsetParent.offsetWidth;
-        item.height = event.srcElement.offsetParent.offsetHeight;
+      item.width = event.srcElement.offsetWidth;
+      item.height = event.srcElement.offsetHeight;
+      var div = document.getElementById(item._id).getBoundingClientRect();
+      var iframe = document.getElementById(item._id + "_video");
+      iframe.style.width = event.srcElement.offsetWidth;
+      iframe.style.height = event.srcElement.offsetHeight;
+      item.x = div.left;
+      item.y = div.top;
 
-        this.props.updateItem(item);
+      this.props.updateItem(item);
     }
 
     handleClick(event, item) {
-        let h = findHighestZIndex('item-container');
-        item.zIndex = parseInt(h) + 1;
-        this.props.updateItem(item);
-        let div = document.getElementById(item._id);
-        div.style.zIndex = parseInt(h) + 1;
+      let h = findHighestZIndex('item-container');
+      console.log(h);
+      this.props.item.zIndex = parseInt(h) + 1;
+      this.props.updateItem(item);
+      let div = document.getElementById(this.props.item._id);
+      div.style.zIndex = parseInt(h) + 1;
     }
 
     deleteItem(e, item) {
@@ -50,27 +57,23 @@ class Video extends Component {
     }
 
     render() {
-        const html = 
+        const html =
             <Rnd
-                extendsProps={
-                    {
-                        id: this.props.item._id,
-                        className: "item-container",
-                        onClick: () => {
-                            this.handleClick(event, this.props.item)
-                        },
-                    }
-                }
+
                 id={this.props.item._id}
                 key={this.props.item._id}
                 default={{
-                    x: this.props.item.x,
-                    y: this.props.item.y,
-                    width: this.props.item.width,
-                    height: this.props.item.height,
+                  x: this.props.item.x,
+                  y: this.props.item.y,
+                  z: this.props.item.zIndex
                 }}
-                z={this.props.item.zIndex}
-                style={{position:"absolute"}}
+                width={this.props.item.width}
+                height={this.props.item.height}
+                minWidth={100}
+                minHeight={50}
+                className="box elem"
+                //lockAspectRatio={true}
+
                 onDragStop=
                     {
                         () => { this.handleDragStop(event, this.props.item) }
@@ -79,98 +82,42 @@ class Video extends Component {
                     {
                         () => { this.handleResizeStop(event, this.props.item) }
                     }
-                
-                
-            >
-                <div className="box">
-                    <div className="box-heading" style={{background: this.props.item.colour}}>
-                        <div className="card-text">
-                            <p>
-                                <span style={{cursor: "pointer", float: "left"}}
-                                    onClick={this.deleteItem.bind(this, this.props.item)}
-                                >
-                                    <FontAwesome name='window-close' />
-                                </span> -
-                                <span style={{float: "left", marginLeft: "5px"}}>{this.props.item.title}</span>
-                                <span style={{float: "right"}}>
-                                    <FontAwesome name='eyedropper'
-                                        style={{cursor: "pointer"}}
-                                        onClick={this.changeColour.bind(this, this.props.item)}
-                                    />
-                                    <FontAwesome name='pencil-square-o' />
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        style={{ textAlign: "right", display: "none" }}
-                        id={this.props.item._id + "-colour"}
-                    >
-                        <FontAwesome
-                            className="colour-changer"
-                            name="circle"
-                            style={{ color: "#1abc9c"}}
-                            onClick={
-                                (e) => { this.saveColour(e.target.style.color, this.props.item) }
-                            }
-                        />
-                        <FontAwesome
-                            className="colour-changer"
-                            name="circle"
-                            style={{ color: "#3498db"}}
-                            onClick={
-                                (e) => { this.saveColour(e.target.style.color, this.props.item) }
-                            }
-                        />
-                        <FontAwesome
-                            className="colour-changer"
-                            name="circle"
-                            style={{ color: "#34495e"}}
-                            onClick={
-                                (e) => { this.saveColour(e.target.style.color, this.props.item) }
-                            }
-                        />
-                        <FontAwesome
-                            className="colour-changer"
-                            name="circle"
-                            style={{ color: "#f1c40f"}}
-                            onClick={
-                                (e) => { this.saveColour(e.target.style.color, this.props.item) }
-                            }
-                        />
-                        <FontAwesome
-                            className="colour-changer"
-                            name="circle"
-                            style={{ color: "#e74c3c"}}
-                            onClick={
-                                (e) => { this.saveColour(e.target.style.color, this.props.item) }
-                            }
-                        />
-                        <FontAwesome
-                            className="colour-changer"
-                            name="circle"
-                            style={{ color: "#95a5a6"}}
-                            onClick={
-                                (e) => { this.saveColour(e.target.style.color, this.props.item) }
-                            }
-                        />
-                    </div>
-                    <div className="embed-responsive embed-responsive-16by9">
-                        <iframe className="embed-responsive-item" width="100%" height="auto"
-                            src={"https://www.youtube.com/embed/" + getYouTubeID(this.props.item.body)}  frameborder="0" allowfullscreen></iframe>
-                    </div>
+                >
+
+
+
+
+
+                <div className="box-title" onClick= {
+                    this.handleClick.bind(this)
+                }>
+                  <FontAwesome
+                    name="times"
+                    style={{ position: "absolute", left: "1", top: "5", background: "#aa0000", padding: "0 10px" }}
+                    onClick={this.deleteItem.bind(this, this.props.item)}
+                  />
+
+                  <span style={{ padding: "0 30px" }}>{this.props.item.title}</span>
+
+                  <FontAwesome
+                      name="arrows-v"
+                      style={{ position: "absolute", right: "0", top: "5", background: "#aa0000", padding: "0 10px" }}
+                  />
+
                 </div>
+                <div className="box-content" onClick= {
+                    this.handleClick.bind(this)
+                } style={{width: this.props.item.width + "px", height: this.props.item.height + "px"}}>
+
+
+                <iframe id={this.props.item._id + "_video"} width={this.props.item.width} height={this.props.item.height}
+                src={"https://www.youtube.com/embed/" + getYouTubeID(this.props.item.body)} frameborder="0" allowfullscreen></iframe>
+                </div>
+
             </Rnd>;
-        
+
         return html;
     }
 }
 
 export default Video;
-
-
-
-
-
-
-
