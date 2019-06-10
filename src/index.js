@@ -9,7 +9,7 @@ import ItemRoutes from './routes/ItemRoutes';
 
 mongoose.Promise = global.Promise;
 mongoose
-  .connect("mongodb://aca:whiteboard@ds135912.mlab.com:35912/whiteboard-final")
+  .connect("mongodb://localhost:27017/whiteboard")
   .then(() => console.log("[mongoose] Connected to MongoDB"))
   .catch(() => console.log("[mongoose] Error connecting to MongoDB"));
 

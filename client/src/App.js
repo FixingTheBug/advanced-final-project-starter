@@ -4,15 +4,12 @@ import './App.css';
 //import SignUpSignIn from './SignUpSignIn';
 //import TopNavbar from './TopNavbar';
 import Secret from './Secret';
-import {Rnd} from "react-rnd";
-import ListOfItemsContainer from "./containers/ListOfItemsContainer";
-import PlusIconContainer from "./containers/PlusIconContainer";
+import WrapperContainer from "./containers/WrapperContainer";
 import PropTypes from 'prop-types';
 
 class App extends Component {
   constructor() {
     super();
-    console.log(React.version);
   }
 
   componentDidMount() {
@@ -22,8 +19,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <PlusIconContainer />
-        <ListOfItemsContainer />
+        <WrapperContainer />
       </div>
     );
   }

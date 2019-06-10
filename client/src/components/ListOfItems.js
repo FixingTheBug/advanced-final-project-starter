@@ -5,66 +5,58 @@ import Text from "./Text";
 import Map from "./Map";
 
 class ListOfItems extends Component {
-  constructor() {
-    super();
-
-    this.initialPositionX = 0;
-    this.initialPositionY = 0;
-    this.finalPositionX = 0;
-    this.finalPositionY = 0;
-    this.drag = this.drag.bind(this);
+  constructor(props) {
+    super(props);
     this.drop = this.drop.bind(this);
     this.resize = this.resize.bind(this);
+
+    console.log(props);
   }
 
-  drag(event) {
-    this.initialPositionX = event.nativeEvent.clientX;
-    this.initialPositionY = event.nativeEvent.clientY;
+
+  drop(x, y, item) {
+      let id = this.props.items.findIndex(a => a._id === item._id);
+      this.props.items[id].x = x;
+      this.props.items[id].y = y;
+      this.props.updateItem(this.props.items[id]);
   }
 
-  drop(event) {
-    this.finalPositionY = event.nativeEvent.clientY;
-    this.finalPositionX = event.nativeEvent.clientX;
-    event.target.style.top = parseInt(event.target.style.top, 10) + this.finalPositionY - this.initialPositionY + "px";
-    event.target.style.left = parseInt(event.target.style.left, 10) + this.finalPositionX - this.initialPositionX + "px";
-    let id = this.props.items.findIndex(x => x._id === event.target.id);
-    this.props.items[id].x = parseInt(event.target.style.left, 10);
-    this.props.items[id].y = parseInt(event.target.style.top, 10);
-    this.props.updateItem(this.props.items[id]);
-  }
-
-  resize(event) {
-    let width = event.target.style.width, height = event.target.style.height;
-    let id = this.props.items.findIndex(x => x._id === event.target.id);
-    this.props.items[id].width = parseInt(width, 10);
-    this.props.items[id].height = parseInt(height, 10);
-    this.props.updateItem(this.props.items[id]);
+  resize(x, y, item) {
+      let id = this.props.items.findIndex(a => a._id === item._id);
+      this.props.items[id].width = this.props.items[id].width + x;
+      this.props.items[id].height = this.props.items[id].height + y;
+      this.props.updateItem(this.props.items[id]);
   }
 
   render() {
     const ItemDivs = this.props.items.map((item) => {
-        switch(item.type) {
-          case 'video':
-            // return <Video item={item} updateItem={this.props.updateItem} deleteItem={this.props.deleteItem} />;
-            break;
-          case 'image':
-            // return <Image item={item} updateItem={this.props.updateItem} deleteItem={this.props.deleteItem} />;
-            break;
-          case 'map':
-            // return <Map item={item} updateItem={this.props.updateItem} deleteItem={this.props.deleteItem} />;
-            break;
-          case 'text':
-              return <Text
-                          item={item}
-                          drag={this.drag}
-                          drop={this.drop}
-                          resize={this.resize}
-                          updateItem={this.props.updateItem}
-                          deleteItem={this.props.deleteItem}
-                          key={item._id}
-                      />;
-              break;
+        console.log(item.type);
+        switch (item.type) {
+            case 'text':
+                return <Text
+                            item={item}
+                            updateItem={this.props.updateItem}
+                            deleteItem={this.props.deleteItem}
+                            selectItem={this.props.selectItem}
+                            drop={this.drop}
+                            resize={this.resize}
+                            key={item._id}
+                        />;
+                break;
+            case 'image':
+                return <Image
+                    item={item}
+                    updateItem={this.props.updateItem}
+                    deleteItem={this.props.deleteItem}
+                    selectItem={this.props.selectItem}
+                    drop={this.drop}
+                    resize={this.resize}
+                    key={item._id}
+                />;
+                break;
+
         }
+        return <div>{item.type}</div>;
     });
 
     return (

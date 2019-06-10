@@ -34,6 +34,8 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^11.1.1",
+    "@ckeditor/ckeditor5-react": "^1.1.0",
     "axios": "^0.16.1",
     "bcrypt": "2.4.3",
     "body-parser": "^1.15.2",
@@ -52,7 +54,7 @@
     "react-dom": "^16.6.3",
     "react-fontawesome": "^1.6.1",
     "react-redux": "^5.0.4",
-    "react-rnd": "^9.0.2",
+    "react-rnd": "^9.0.4",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^0.9.5",

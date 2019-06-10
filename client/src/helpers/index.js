@@ -33,3 +33,7 @@ export function getYouTubeID(YouTubeURL) {
         return 'error';
     }
 }
+
+export function getWindowCenter() {
+    return window.innerWidth;
+}

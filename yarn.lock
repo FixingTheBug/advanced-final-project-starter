@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@ckeditor/ckeditor5-build-classic@^11.1.1":
+  version "11.1.1"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-build-classic/-/ckeditor5-build-classic-11.1.1.tgz#2eb3706bc83640bdc5f6d50e3a060aa70cf495aa"
+  integrity sha512-YfXokhH3Z82zdu4KCfYj2/7I0KyQav5QhNBDKnliXVGgNDuFa529xWr6x+tMx57vu+iiiih7Nmxd86A7tvsh/w==
+
+"@ckeditor/ckeditor5-react@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-react/-/ckeditor5-react-1.1.0.tgz#d0b0049754bea4b5dec0d2748306559f8b1a5ad4"
+  integrity sha512-X3uS8gMTgwt6rxEe0l+mo6N1U6o40DC922LcPWI81z6He+9MPIEtITxjaGxy5ts/O7RJDBMYsQVZJusTG+CcuA==
+  dependencies:
+    prop-types "^15.6.1"
+
 abab@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.3.tgz#b81de5f7274ec4e756d797cd834f303642724e5d"
@@ -5232,10 +5244,10 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-re-resizable@4.8.0:
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-4.8.0.tgz#abd1ef535ceaaa19dda902ed39ced29ed5ff7a98"
-  integrity sha512-vjMTar4dxvSYdoAUwLLF0rBMa5SPlz6oz7EFl9VHjUuUtEU1ipOmAfKsJzcsLWUTAPEj5Sku2zHq8zcchc8MOA==
+re-resizable@4.9.3:
+  version "4.9.3"
+  resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-4.9.3.tgz#833df4a4a9b62cfc1de11bc1456285374826e1f0"
+  integrity sha512-JKzmZdUAYWs85YErkmZNB7hjGR9qUOHFUZUtEplZlEZBFHRguiWck5J+HFTy/NjlMJtqQsYPQq57nQAO2BuRRg==
 
 react-bootstrap@^0.31.0:
   version "0.31.0"
@@ -5320,12 +5332,12 @@ react-redux@^5.0.4:
     loose-envify "^1.1.0"
     prop-types "^15.5.10"
 
-react-rnd@^9.0.2:
-  version "9.0.2"
-  resolved "https://registry.yarnpkg.com/react-rnd/-/react-rnd-9.0.2.tgz#8fc29c3ea169b3b317b63eb3d987be6c5d3163fb"
-  integrity sha512-0JHkaKchGUvoSOQ4Cp+WHmQnWJmDwLC1MD06QMOZuep6kBq/1JEVG9qG5SXlbQsRfHQCuSQi3aK/Q8NbAqHDog==
+react-rnd@^9.0.4:
+  version "9.0.4"
+  resolved "https://registry.yarnpkg.com/react-rnd/-/react-rnd-9.0.4.tgz#267a8cc9602a760652369ac9a286b80626e6577f"
+  integrity sha512-Og2KsZdzqF6RNsrDVj9CHRcQpJZ9/ShsMOc+aVmedubggfL5CVr1LLR0gooYtFd1rTGhecgfsgh0xNwEz3yGiw==
   dependencies:
-    re-resizable "4.8.0"
+    re-resizable "4.9.3"
     react-draggable "3.0.5"
     tslib "1.9.3"
 

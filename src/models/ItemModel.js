@@ -23,11 +23,11 @@ const schema = new mongoose.Schema({
     },
     width: {
         required: false,
-        type: "String"
+        type: "Number"
     },
     height: {
         required: false,
-        type: "String"
+        type: "Number"
     },
     zIndex: {
         required: false,

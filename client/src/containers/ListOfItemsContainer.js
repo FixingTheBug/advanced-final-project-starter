@@ -2,12 +2,6 @@ import {connect} from "react-redux";
 import ListOfItems from "../components/ListOfItems";
 import {updateItem, deleteItem} from "../actions";
 
-function mapStateToProps(state) {
-    return {
-        items: state.items,
-    }
-}
-
 function mapDispatchToProps(dispatch) {
     return {
         updateItem: function(item) {
@@ -19,4 +13,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListOfItems);
+export default connect(null, mapDispatchToProps)(ListOfItems);

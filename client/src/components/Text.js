@@ -1,35 +1,46 @@
 import React, { Component } from "react";
 import {findHighestZIndex} from "../helpers";
-import FontAwesome from "react-fontawesome";
+import {Rnd} from "react-rnd";
 
 class Text extends Component {
-    constructor() {
+    constructor(props) {
         super();
+        console.log(props);
     }
 
     render() {
         const html =
-        <div
-            draggable="true"
-            id={this.props.item._id }
-            onDragStart={this.props.drag}
-            onClick={this.click}
-            onDragEnd={this.props.drop}
-            onMouseUp={this.props.resize}
-            style={{
-                top: this.props.item.y,
-                left: this.props.item.x,
-                width: this.props.item.width + "px",
-                height: this.props.item.height + "px",
-                resize: "both"
-            }}
-            className = "box"
+        <Rnd
+              default={{
+                x: this.props.item.x,
+                y: this.props.item.y,
+                width: this.props.item.width,
+                height: this.props.item.height,
+              }}
+              onDragStop={ (e, d) => { this.props.drop(d.x, d.y, this.props.item) } }
+              onResizeStop={(e, direction, ref, delta, position) => {
+                  this.props.resize(delta.width, delta.height, this.props.item);
+                  this.props.drop(position.x, position.y, this.props.item)
+              }
+            }
+              className="box"
+              id={this.props.item._id}
         >
-            {this.props.item.body}
-        </div>;
+            <div className="box-title" style={{ background: this.props.item.colour }}>
+                { this.props.item.title }
+            </div>
+
+              <div className="box-body">
+                <div className="box-text" dangerouslySetInnerHTML={{__html: this.props.item.body}} />
+                <div className="box-edit" onClick={this.props.selectItem}>Edit</div>
+                </div>
+
+        </Rnd>
+
 
         return html;
     }
+
 }
 
 export default Text;
